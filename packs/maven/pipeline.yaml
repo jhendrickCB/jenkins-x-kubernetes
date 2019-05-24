@@ -11,9 +11,9 @@ pipelines:
       steps:
       - sh: jx step changelog --version v\$(cat ../../VERSION)
         name: changelog
-      - sh: export FLOW_TOKEN="$(jx step credential -s flow-token -k token)"
+      - sh: export FLOW_TOKEN="$(jx step credential -s flow-token -k token)"; echo $FLOW_TOKEN
         name: store-pwd
-      - sh: cat $FLOW_TOKEN
+      - sh: echo $FLOW_TOKEN
         name: echo-token       
       - comment: call CloudBees Flow to run a release
         sh: >
