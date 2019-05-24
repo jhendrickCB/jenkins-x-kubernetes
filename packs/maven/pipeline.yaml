@@ -11,6 +11,9 @@ pipelines:
       steps:
       - sh: jx step changelog --version v\$(cat ../../VERSION)
         name: changelog
+      - sh: export FLOW_TOKEN="$(jx step credential -s flow-secret -k password)"
+        name: store-pwd
       - comment: call CloudBees Flow to run a release
-        sh: curl https://ps9.ecloud-kdemo.com/rest/v1.0/jobs
+        sh: >
+          curl -H 'Authorization: Basic $FLOW_TOKEN' https://ps9.ecloud-kdemo.com/rest/v1.0/jobs --insecure
         name: cloudbees-flow-release
