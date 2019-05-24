@@ -11,7 +11,7 @@ pipelines:
       steps:
       - sh: jx step changelog --version v\$(cat ../../VERSION)
         name: changelog
-      - sh: export FLOW_TOKEN="$(jx step credential -s flow-secret -k password)"
+      - sh: export FLOW_TOKEN="$(jx step credential -s flow-token -k token)"
         name: store-pwd
       - sh: echo $FLOW_TOKEN
         name: echo-token       
