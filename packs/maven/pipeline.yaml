@@ -15,5 +15,5 @@ pipelines:
         name: store-pwd
       - comment: call CloudBees Flow to run a release
         sh: >
-          curl -H "Authorization: Basic ${FLOW_TOKEN}" https://ps9.ecloud-kdemo.com/rest/v1.0/jobs --insecure
+          curl -H "Authorization: Basic $(cat FLOW_TOKEN)" https://ps9.ecloud-kdemo.com/rest/v1.0/jobs --insecure
         name: cloudbees-flow-release
